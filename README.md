@@ -41,11 +41,11 @@ usdocker wordpress --set variable=value
 Default values
 
  - image: "wordpress:4.8-php7.1",
- - folder: "/home/jg/.usdocker/data/wordpress",
- - pluginFolder: "/home/jg/.usdocker/data/wordpress/plugins",
- - themesFolder: "/home/jg/.usdocker/data/wordpress/themes",
- - uploadsFolder: "/home/jg/.usdocker/data/wordpress/uploads",
- - languagesFolder: "/home/jg/.usdocker/data/wordpress/languages",
+ - folder: "$HOME/.usdocker/data/wordpress",
+ - pluginFolder: "$HOME/.usdocker/data/wordpress/plugins",
+ - themesFolder: "$HOME/.usdocker/data/wordpress/themes",
+ - uploadsFolder: "$HOME/.usdocker/data/wordpress/uploads",
+ - languagesFolder: "$HOME/.usdocker/data/wordpress/languages",
  - port: 8080,
  - db: "mysql-container",
  - dbUser: "root",
