@@ -24,6 +24,12 @@ usdocker wordpress up
 usdocker wordpress down
 ```
 
+## Check if the service is running
+
+```
+usdocker wordpress status
+```
+
 ## Customize your service
 
 You can setup the variables by using:
