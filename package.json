@@ -1,0 +1,27 @@
+{
+  "name": "usdocker-wordpress",
+  "version": "1.0.0",
+  "description": "USDocker script for start Wordpress as appliance",
+  "main": "usdocker_wordpress.js",
+  "scripts": {
+    "test": "./node_modules/.bin/eslint *.js",
+    "postinstall": "./node_modules/.bin/usdocker -rv"
+  },
+  "keywords": [
+    "usdocker",
+    "wordpress"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/usdocker/usdocker-wordpress.git"
+  },
+  "author": "joao@byjg.com.br",
+  "license": "MIT",
+  "dependencies": {
+    "usdocker-mysql": "^1.0.*",
+    "usdocker": "^1.0.*"
+  },
+  "devDependencies": {
+    "eslint": "^4.4.1"
+  }
+}
