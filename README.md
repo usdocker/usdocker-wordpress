@@ -42,14 +42,13 @@ Default values
 
  - image: "wordpress:4.8-php7.1",
  - folder: "$HOME/.usdocker/data/wordpress",
- - pluginFolder: "$HOME/.usdocker/data/wordpress/plugins",
- - themesFolder: "$HOME/.usdocker/data/wordpress/themes",
- - uploadsFolder: "$HOME/.usdocker/data/wordpress/uploads",
- - languagesFolder: "$HOME/.usdocker/data/wordpress/languages",
  - port: 8080,
  - db: "mysql-container",
  - dbUser: "root",
- - dbPassword: "password"
+ - dbPassword: "password",
+ - dbName: "wordpress",
+ - dbTablePrefix: "",
+ - enableDebug: "false"
 
 
 ## Customize the "$HOME/.usdocker/setup/wordpress/conf/uploads.ini"

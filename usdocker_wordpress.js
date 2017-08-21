@@ -3,6 +3,7 @@
 const usdocker = require('usdocker');
 const fs = require('fs');
 const fsutil = usdocker.fsutil();
+const path = require('path');
 
 const SCRIPTNAME = 'wordpress';
 
@@ -13,18 +14,24 @@ const CONTAINERNAME = SCRIPTNAME + configGlobal.get('container-suffix');
 function getContainerDef() {
 
     let docker = usdocker.dockerRunWrapper(configGlobal);
+
+    if (config.get('enableDebug') === 'true') {
+        docker.env('WORDPRESS_DEBUG', 'true');
+    }
+
+    if (config.get('dbTablePrefix') !== '') {
+        docker.env('WORDPRESS_TABLE_PREFIX', config.get('dbTablePrefix'));
+    }
+
     return docker
         .containerName(CONTAINERNAME)
         .port(config.get('port'), 80)
-        .volume(config.get('folder'), '/data')
-        .volume(config.get('pluginFolder'), '/var/www/html/wp-content/plugins')
-        .volume(config.get('themesFolder'), '/var/www/html/wp-content/themes')
-        .volume(config.get('uploadsFolder'), '/var/www/html/wp-content/uploads')
-        .volume(config.get('languagesFolder'), '/var/www/html/wp-content/languages')
-        .volume(config.getUserDir('conf'), '/usr/local/etc/php/conf.d/uploads.ini')
+        .volume(path.join(config.get('folder'), 'wp-content'), '/var/www/html/wp-content')
+        .volume(path.join(config.getUserDir('conf'), 'uploads.ini'), '/usr/local/etc/php/conf.d/uploads.ini')
         .env('WORDPRESS_DB_HOST', config.get('db'))
         .env('WORDPRESS_DB_USER', config.get('dbUser'))
         .env('WORDPRESS_DB_PASSWORD', config.get('dbPassword'))
+        .env('WORDPRESS_DB_NAME', config.get('dbName'))
         .isDetached(true)
         .isRemove(true)
         .imageName(config.get('image'))
@@ -36,23 +43,18 @@ module.exports = {
     {
         config.setEmpty('image', 'wordpress:4.8-php7.1');
         config.setEmpty('folder', config.getDataDir());
-        config.setEmpty('pluginFolder', config.getDataDir() + '/plugins');
-        config.setEmpty('themesFolder', config.getDataDir() + '/themes');
-        config.setEmpty('uploadsFolder', config.getDataDir() + '/uploads');
-        config.setEmpty('languagesFolder', config.getDataDir() + '/languages');
         config.setEmpty('port', 8080);
         config.setEmpty('db', 'mysql' + configGlobal.get('container-suffix'));
         config.setEmpty('dbUser', 'root');
         config.setEmpty('dbPassword', 'password');
+        config.setEmpty('dbName', 'wordpress');
+        config.setEmpty('dbTablePrefix', '');
+        config.setEmpty('enableDebug', 'false');
 
         config.copyToUserDir(__dirname + '/wordpress/conf');
 
         let folderList = [
             config.get('folder'),
-            config.get('pluginFolder'),
-            config.get('themesFolder'),
-            config.get('uploadsFolder'),
-            config.get('languagesFolder')
         ];
 
         for (let i=0; i<folderList.length; i++) {
