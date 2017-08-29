@@ -51,7 +51,7 @@ module.exports = {
         config.setEmpty('dbTablePrefix', '');
         config.setEmpty('enableDebug', 'false');
 
-        config.copyToUserDir(__dirname + '/wordpress/conf');
+        config.copyToUserDir(path.join(__dirname, 'wordpress', 'conf'));
 
         let folderList = [
             config.get('folder'),
