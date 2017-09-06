@@ -1,6 +1,6 @@
 'use strict';
 
-const usdocker = require('usdocker');
+const usdocker = require('@usdocker/usdocker');
 const fs = require('fs');
 const fsutil = usdocker.fsutil();
 const path = require('path');
