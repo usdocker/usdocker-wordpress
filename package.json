@@ -1,12 +1,11 @@
 {
-  "name": "usdocker-wordpress",
+  "name": "@usdocker/wordpress",
   "version": "1.0.5",
   "description": "USDocker script for start Wordpress as appliance",
   "main": "usdocker_wordpress.js",
   "scripts": {
     "test": "./node_modules/.bin/eslint *.js",
-    "preinstall": "npm i -g usdocker usdocker-mysql",
-    "postinstall": "./node_modules/.bin/usdocker -rv"
+    "postinstall": "usdocker -rv"
   },
   "keywords": [
     "usdocker",
