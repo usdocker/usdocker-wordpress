@@ -8,7 +8,8 @@ It is easy to add your own plugins and themes.
 ## Install USDocker Wordpress
 
 ```bash
-npm install -g @usdocker/usdocker @usdocker/mysql @usdocker/wordpress
+npm install -g @usdocker/usdocker # Install it first
+npm install -g @usdocker/mysql @usdocker/wordpress
 ``` 
 
 ## Start the wordpress service
