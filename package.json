@@ -1,6 +1,6 @@
 {
   "name": "@usdocker/wordpress",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "USDocker script for start Wordpress as appliance",
   "main": "usdocker_wordpress.js",
   "scripts": {
